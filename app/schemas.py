@@ -11,6 +11,7 @@ class CreateUser(BaseModel):
 class UpdateUser(CreateUser):
     pass
 
+
 class CreateTask(BaseModel):
     title: str
     content: str
@@ -19,5 +20,3 @@ class CreateTask(BaseModel):
 
 class UpdateTask(CreateTask):
     pass
-
-print(dir(UpdateTask))
