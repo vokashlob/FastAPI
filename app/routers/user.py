@@ -28,7 +28,7 @@ async def user_by_id(db: Annotated[Session, Depends(get_db)], user_id: int):
 
 
 @router.post('/create')
-async def create_user(db: Annotated[Session, Depends(get_db)], create_user: CreateUser):
+async def make_user(db: Annotated[Session, Depends(get_db)], create_user: CreateUser):
     db.execute(insert(User).values(username=create_user.username,
                                    firstname=create_user.firstname,
                                    lastname=create_user.lastname,
@@ -40,7 +40,7 @@ async def create_user(db: Annotated[Session, Depends(get_db)], create_user: Crea
 
 
 @router.put('/update')
-async def update_user(db: Annotated[Session, Depends(get_db)], update_user: UpdateUser, user_id):
+async def make_update_user(db: Annotated[Session, Depends(get_db)], update_user: UpdateUser, user_id):
     user = db.scalar(select(User).where(User.id == user_id))
     if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='User not found')
