@@ -34,7 +34,7 @@ async def make_task(db: Annotated[Session, Depends(get_db)], create_task: Create
     db.execute(insert(Task).values(title=create_task.title,
                                    content=create_task.content,
                                    priority=create_task.priority,
-                                   user_id=create_task.user_id,
+                                   user_id=user_id,
                                    slug=slugify(create_task.title)))
     db.commit()
     return {'status_code': status.HTTP_201_CREATED, 'transaction': 'Successful'}
